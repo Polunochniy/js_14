@@ -241,7 +241,36 @@ fetch('https://open.er-api.com/v6/latest/USD').then(res => res.json())
 
 
 
+//Currency drop down
 
+//Currency table
+
+
+//Form
+
+const car = {
+    "Name":"chevrolet chevelle malibu",
+    "Cylinders":8,
+    "Displacement":307,
+    "Horsepower":130,
+    "Weight_in_lbs":3504,
+    "Origin":"USA",
+    "in_production": false
+};
+let form = "<form>";
+for (const key in car) {
+    if (car.hasOwnProperty(key)) {
+        const value = car[key];
+        const inputType = typeof value === "boolean" ? "checkbox" : "text";
+        form += `<label>${key}: <input type="${inputType}" value="${value}"/></label>`;
+    }
+}
+form += "</form>";
+document.body.innerHTML = form;
+
+
+
+//Table
 
 
 
