@@ -1,50 +1,37 @@
+const cardsArray = Array.from(document.querySelectorAll(".card"));
 
-const getRandomArray = (length, min, max) => {
-    const arr = [];
+const cardsOnPage = 5;
+const step = Math.ceil(cardsArray.length / cardsOnPage);
 
-    for (let i = 0; i < length; i++) {
-        const randomArray = Math.floor(Math.random() * (max - min + 1)) + min;
-        arr.push(randomArray);
-    }
+const pagination = document.getElementById("pagination");
+const pageButtons = pagination.querySelectorAll(".step");
 
-    return arr;
-}
+for (let i = 0; i < pageButtons.length; i++) {
+    const button = pageButtons[i];
 
-const length = 30;
-const min = 1;
-const max = 30;
+    button.addEventListener('click', function() {
+		const pageNum = +this.innerHTML;
 
-const arr = getRandomArray(length, min, max);
-const pagination = 5;
+        const start = (pageNum - 1) * cardsOnPage
+        const end = start + cardsOnPage
+        // const page = cardsArray.slice(start, end)
 
-function Pagination(arr, pagination) {
-    const steps = Math.ceil(arr.length / pagination);
-    const navigationDiv = document.getElementById('navigation');
-
-    for (let i = 0; i < steps; i++) {
-        const stepStart = i * pagination;
-        const stepEnd = stepStart + pagination;
-        const pageButton = document.createElement('button');
-
-        if (i === 0) {
-            pageButton.innerText = '<<';
-            pageButton.disabled = true;
-        } else if (i === steps - 1) {
-            pageButton.innerText = '>>';
-        } else {
-            pageButton.innerText = i;
-        }
-
-        pageButton.addEventListener('click', () => {
-            const currentPage = i;
-            const pageItems = arr.slice(stepStart, stepEnd);
-            console.log(`Сторінка ${currentPage}:`, pageItems);
+        cardsArray.forEach(function(card) {
+            card.style.display = "none";
         });
 
-        navigationDiv.appendChild(pageButton);
-    }
+        // Відображаємо картки з поточної сторінки
+        const cardsToShow = cardsArray.slice(start, end);
+        cardsToShow.forEach(function(card) {
+            card.style.display = "block";
+        });
+
+        // Видаляємо клас "active" з усіх кнопок і додаємо його до поточної кнопки
+        pageButtons.forEach(function(btn) {
+            btn.classList.remove("active");
+        });
+        button.classList.add("active");
+    });
 }
 
-Pagination(arr, pagination);
-
-
+pageButtons[0].click();
