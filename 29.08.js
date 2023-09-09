@@ -14,19 +14,16 @@ for (let i = 0; i < pageButtons.length; i++) {
 
         const start = (pageNum - 1) * cardsOnPage
         const end = start + cardsOnPage
-        // const page = cardsArray.slice(start, end)
 
         cardsArray.forEach(function(card) {
             card.style.display = "none";
         });
 
-        // Відображаємо картки з поточної сторінки
         const cardsToShow = cardsArray.slice(start, end);
         cardsToShow.forEach(function(card) {
             card.style.display = "block";
         });
 
-        // Видаляємо клас "active" з усіх кнопок і додаємо його до поточної кнопки
         pageButtons.forEach(function(btn) {
             btn.classList.remove("active");
         });
