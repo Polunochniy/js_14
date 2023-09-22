@@ -47,6 +47,7 @@ function falseLetter(letter) {
   if (getLetters) {
     if (getLetters.style.backgroundColor !== 'red') {// лічильник натискань збільшується на невірну букву, якщо вона ще не виділена червоним
       incorrectClickCount++;
+      getLetters.style.backgroundColor = 'red';
     }
 
     if (!['G', 'E', 'N', 'R', 'A', 'T', 'O'].includes(letter)) {
