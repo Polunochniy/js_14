@@ -96,8 +96,6 @@ alphabet.forEach(letter => {
   }
 });
 
-let answer = false; // змінна буде вказувати чи закінчилась гра
-
 function* gameGenerator() {
   while (incorrectClickCount < 6) { // гра продовжується поки невірних кліків менше 6
     const playerCommand = yield; //генератор зупиняється і очікує наступне значення від коду. Коли викличемо next генератор продовжиться від точки зупинки зі значенням playerCommand
